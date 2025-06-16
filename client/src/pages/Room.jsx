@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
-import {} from "../providers/Socket";
 import { useSocket } from "../providers/Socket";
+import {usePeer} from "../providers/Peer";
 
 const RoomPage =() =>{
     const { socket } = useSocket ();
+    const {peer, createOffer} = usePeer();
 
-    const handleNewUserJoined =(data) =>{
+    const handleNewUserJoined = async(data) =>{
         const {emailId} = data 
         console.log('New user joined the room',emailId );
-
+        const offer = await createOffer()
 
     }
 
