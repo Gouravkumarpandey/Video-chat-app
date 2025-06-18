@@ -1,14 +1,26 @@
 const express = require('express');
+const http = require('http');
 const bodyParser = require('body-parser');
 const { Server } = require('socket.io');
+const cors = require('cors');
 
-const io = new Server({
-  cors: true,
-});
 const app = express();
+const server = http.createServer(app);
 
+// Allow all origins (or restrict to your Vercel URL)
+app.use(cors({
+  origin: '*',
+}));
 app.use(bodyParser.json());
 
+const io = new Server(server, {
+  cors: {
+    origin: '*', // You can also set this to "https://your-frontend.vercel.app"
+    methods: ["GET", "POST"],
+  }
+});
+
+// === Mappings ===
 const emailToSocketMapping = new Map();
 const socketToEmailMapping = new Map();
 
@@ -33,7 +45,6 @@ io.on('connection', (socket) => {
     const socketId = emailToSocketMapping.get(emailId);
 
     console.log(`📞 Calling ${emailId} from ${fromEmail}`);
-
     if (socketId) {
       socket.to(socketId).emit('incomming-call', { from: fromEmail, offer });
     }
@@ -44,7 +55,6 @@ io.on('connection', (socket) => {
     const socketId = emailToSocketMapping.get(emailId);
 
     console.log(`✅ Call accepted by ${emailId}`);
-
     if (socketId) {
       socket.to(socketId).emit('call-accepted', { ans });
     }
@@ -52,9 +62,6 @@ io.on('connection', (socket) => {
 
   socket.on('send-message', ({ message }) => {
     const email = socketToEmailMapping.get(socket.id);
-    const socketId = socket.id;
-
-    // Broadcast to everyone except sender in same rooms
     const rooms = [...socket.rooms].filter((room) => room !== socket.id);
     rooms.forEach((room) => {
       socket.to(room).emit('receive-message', { message, from: email });
@@ -76,5 +83,8 @@ io.on('connection', (socket) => {
   });
 });
 
-app.listen(8000, () => console.log("✅ HTTP server running at PORT 8000"));
-io.listen(8001, () => console.log("✅ WebSocket server running at PORT 8001"));
+// ✅ Listen on the port provided by Render
+const PORT = process.env.PORT || 8000;
+server.listen(PORT, () => {
+  console.log(`🚀 Server listening on port ${PORT}`);
+});
