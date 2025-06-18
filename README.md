@@ -1,46 +1,15 @@
-<p align="center">
+![ChatGPT Image Jun 18, 2025, 08_42_47 AM](https://github.com/user-attachments/assets/a23c2651-9996-4d21-9fcf-451432e00ff5)<p align="center">
   <img src="https://raw.githubusercontent.com/Gouravkumarpandey/Video-chat-app/main/assets/architecture.png" alt="Video Chat App Architecture" width="800"/>
 </p>
 
 
-📹 Video Chat App
-A full-stack real-time video chat application powered by React.js, Node.js, Socket.IO, and WebRTC.
-This app allows users to create or join private rooms and initiate peer-to-peer video calls 
-directly from their browsers.
-
-
-## 🚀 Features
-
-- 🔗 Peer-to-peer video calling using WebRTC
-- 🌐 Real-time communication with Socket.IO
-- 📹 Local video preview before call
-- 📞 Auto-connect to other peers in the room
-- ✅ Easy room joining and unique room creation
-- 🔒 Private rooms with unique Room IDs
-
-## 🛠️ Tech Stack
-
-### Frontend
-- React.js
-- WebRTC API
-- Context API (for managing sockets and peer state)
-- React Router
-
-### Backend
-- Node.js
-- Express.js
-- Socket.io
-
-
-Here is a **detailed and structured `README.md`** file for your **Video Chat App** project based on the codebase and structure you've shared:
-
----
 
 # 📹 Video Chat App
 
 A full-stack real-time video chat application powered by **React.js**, **Node.js**, **Socket.IO**, and **WebRTC**. This app allows users to create or join private rooms and initiate peer-to-peer video calls directly from their browsers.
 
-![App Architecture](./assets/architecture.png)
+![App Architecture]([Uploading ChatGPT Image Jun 18, 2025, 08_42_47 AM.png…]()
+)
 
 ---
 
