@@ -1,5 +1,4 @@
-![ChatGPT Image Jun 18, 2025, 08_42_47 AM](https://github.com/user-attachments/assets/a23c2651-9996-4d21-9fcf-451432e00ff5)<p align="center">
-  <img src="https://raw.githubusercontent.com/Gouravkumarpandey/Video-chat-app/main/assets/architecture.png" alt="Video Chat App Architecture" width="800"/>
+![35722b6e-ed52-4ba5-bd06-d4e7450a5bc0](https://github.com/user-attachments/assets/0d92ff19-7136-4ada-9f7f-6596dc1400b6)![ChatGPT Image Jun 18, 2025, 08_42_47 AM](https://github.com/user-attachments/assets/a23c2651-9996-4d21-9fcf-451432e00ff5)<p align="center">
 </p>
 
 
@@ -8,7 +7,6 @@
 
 A full-stack real-time video chat application powered by **React.js**, **Node.js**, **Socket.IO**, and **WebRTC**. This app allows users to create or join private rooms and initiate peer-to-peer video calls directly from their browsers.
 
-![App Architecture]([Uploading ChatGPT Image Jun 18, 2025, 08_42_47 AM.png…]()
 )
 
 ---
@@ -73,8 +71,6 @@ VIDEO-CHAT-APP/
 
 ## 🖥️ Architecture Diagram
 
-![Video Chat Architecture](./assets/architecture.png)
-
 This architecture shows how:
 
 * React initiates WebRTC and connects via Socket.IO.
@@ -87,11 +83,13 @@ This architecture shows how:
 
 ### Sequence Diagram
 
-![Sequence UML](./assets/sequence-diagram.png)
+![Sequence UML](![5e16b2ba-308e-41c8-bd07-856177dc7915](https://github.com/user-attachments/assets/aadc2355-32e9-4ebe-8915-781c63d41fec)
+)
 
 ### Class Diagram
 
-![Class UML](./assets/class-diagram.png)
+![Class UML](![35722b6e-ed52-4ba5-bd06-d4e7450a5bc0](https://github.com/user-attachments/assets/c8386add-e263-4ce0-9250-fcbf0b32aa6c)
+)
 
 ---
 
@@ -150,19 +148,7 @@ Runs the app on **[http://localhost:3000](http://localhost:3000)**
 
 ---
 
-## 🤝 Contributing
 
-Feel free to fork this repo, create issues, or submit pull requests for improvements or features.
-
----
-
-## 📝 License
-
-MIT License – feel free to use and modify.
-
----
-
-Would you like this README saved as a markdown file or want help embedding the diagrams in your GitHub repo?
 
 
 
