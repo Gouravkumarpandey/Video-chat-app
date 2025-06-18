@@ -27,3 +27,18 @@ This app allows users to create or join rooms and perform peer-to-peer video cal
 
 ## 📁 Project Structure
 
+Video-chat-app/
+├── client/ # React frontend
+│ ├── src/
+│ │ ├── components/ # Reusable UI components
+│ │ ├── pages/ # HomePage, RoomPage
+│ │ ├── providers/ # useSocket, usePeer hooks
+│ │ └── App.js # Routes
+├── server/ # Express + Socket.IO backend
+│ └── index.js # Server and socket logic
+├── assets/ # Diagrams or images
+└── README.md
+
+
+
+
