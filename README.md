@@ -1,4 +1,4 @@
-![35722b6e-ed52-4ba5-bd06-d4e7450a5bc0](https://github.com/user-attachments/assets/0d92ff19-7136-4ada-9f7f-6596dc1400b6)![ChatGPT Image Jun 18, 2025, 08_42_47 AM](https://github.com/user-attachments/assets/a23c2651-9996-4d21-9fcf-451432e00ff5)<p align="center">
+![ChatGPT Image Jun 18, 2025, 08_42_47 AM](https://github.com/user-attachments/assets/a23c2651-9996-4d21-9fcf-451432e00ff5)<p align="center">
 </p>
 
 
@@ -76,20 +76,6 @@ This architecture shows how:
 * React initiates WebRTC and connects via Socket.IO.
 * Socket.IO handles signaling on both frontend and backend.
 * WebRTC handles peer-to-peer media streams after handshake.
-
----
-
-## 📊 UML Diagrams
-
-### Sequence Diagram
-
-![Sequence UML](![5e16b2ba-308e-41c8-bd07-856177dc7915](https://github.com/user-attachments/assets/aadc2355-32e9-4ebe-8915-781c63d41fec)
-)
-
-### Class Diagram
-
-![Class UML](![35722b6e-ed52-4ba5-bd06-d4e7450a5bc0](https://github.com/user-attachments/assets/c8386add-e263-4ce0-9250-fcbf0b32aa6c)
-)
 
 ---
 
