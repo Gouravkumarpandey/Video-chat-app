@@ -7,8 +7,6 @@
 
 A full-stack real-time video chat application powered by **React.js**, **Node.js**, **Socket.IO**, and **WebRTC**. This app allows users to create or join private rooms and initiate peer-to-peer video calls directly from their browsers.
 
-)
-
 ---
 
 ## 🚀 Features
