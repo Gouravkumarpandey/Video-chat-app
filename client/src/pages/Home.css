@@ -1,0 +1,94 @@
+/* Home.css */
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.home-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom right, #0f1626, #1b2b4f);
+}
+
+.form-card {
+    background-color: #0d1117;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 400px;
+    color: white;
+}
+
+.form-card h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    color: #9ca3af;
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    color: #f1f5f9;
+    font-size: 0.9rem;
+}
+
+input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: none;
+    background-color: #161b22;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.room-id-row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.room-id-row input {
+    flex: 1;
+}
+
+.room-id-row button {
+    background-color: #1f6feb;
+    border: none;
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.room-id-row button:hover {
+    background-color: #1158c7;
+}
+
+.join-btn {
+    width: 100%;
+    padding: 0.6rem;
+    margin-top: 1rem;
+    background-color: #3b3f46;
+    color: #cbd5e1;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.join-btn:hover {
+    background-color: #475569;
+}

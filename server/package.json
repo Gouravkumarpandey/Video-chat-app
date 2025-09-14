@@ -1,14 +1,17 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Video Chat App Server using Express and Socket.IO",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "start": "nodemon index.js"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
@@ -20,5 +23,14 @@
     "socket.io": "^4.8.1",
     "sqlite3": "^5.1.7",
     "uuid": "^13.0.0"
+=======
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+>>>>>>> 3acab35b9e6419bb66c1c8c6b8a5a4a393f48272
   }
 }
