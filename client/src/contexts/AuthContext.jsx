@@ -94,12 +94,19 @@ export const AuthProvider = ({ children }) => {
     const signup = async (userData) => {
         setIsLoading(true);
         try {
+            // Ensure firstName and lastName are sent as separate fields
+            const payload = {
+                firstName: userData.firstName,
+                lastName: userData.lastName,
+                email: userData.email,
+                password: userData.password
+            };
             const response = await fetch(`${API_BASE_URL}/auth/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(userData),
+                body: JSON.stringify(payload),
             });
 
             const data = await response.json();

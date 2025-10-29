@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
     Users, 
@@ -21,8 +20,9 @@ import {
     Award,
     Copy
 } from 'lucide-react';
+import { useState } from 'react';
 
-const ParticipantItem = ({ participant, isHost, isCoHost, onMute, onRemove, onPromote, onMakeCoHost }) => {
+const ParticipantItem = ({ participant, isHost, isCoHost, onMute, onRemove, onMakeCoHost }) => {
     const [showMenu, setShowMenu] = useState(false);
     const canModerate = isHost || isCoHost;
     const isCurrentUserHost = participant.role === 'host';
@@ -52,7 +52,7 @@ const ParticipantItem = ({ participant, isHost, isCoHost, onMute, onRemove, onPr
         >
             <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3 flex-1 min-w-0">
-                    {/* Enhanced Avatar */}
+                    {/* Avatar */}
                     <div className="relative">
                         <div className={`w-10 h-10 bg-gradient-to-br ${getAvatarColor(participant.name)} rounded-full flex items-center justify-center text-white font-semibold text-sm shadow-md`}>
                             {participant.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)}
@@ -317,7 +317,7 @@ const ParticipantsPanel = ({
                 transition={{ type: 'spring', damping: 25, stiffness: 200 }}
                 className="fixed right-0 top-0 h-full w-full md:w-96 bg-white shadow-2xl z-50 flex flex-col"
             >
-                {/* Enhanced Header */}
+                {/* Header */}
                 <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6">
                     <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center space-x-3">
@@ -439,53 +439,27 @@ const ParticipantsPanel = ({
                             ))}
                         </AnimatePresence>
                     ) : (
-                        <div className="flex flex-col items-center justify-center py-12 px-6">
-                            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                                <Users className="text-gray-400" size={24} />
-                            </div>
-                            <h3 className="font-medium text-gray-900 mb-2">
-                                {searchTerm ? 'No participants found' : 'No participants yet'}
-                            </h3>
-                            <p className="text-gray-500 text-center text-sm">
-                                {searchTerm 
-                                    ? `No participants match "${searchTerm}"`
-                                    : 'Participants will appear here when they join'
-                                }
-                            </p>
-                            {searchTerm && (
-                                <button
-                                    onClick={() => setSearchTerm('')}
-                                    className="mt-3 text-blue-600 hover:text-blue-700 font-medium text-sm"
-                                >
-                                    Clear search
-                                </button>
-                            )}
+                        <div className="flex flex-col items-center justify-center h-64 text-center px-6">
+                            <Users className="text-gray-300 mb-3" size={32} />
+                            <p className="text-gray-900 font-medium">No participants found</p>
+                            <p className="text-gray-500 text-sm mt-1">Try adjusting your search or invite others to join.</p>
                         </div>
                     )}
                 </div>
 
-                {/* Enhanced Host Controls */}
-                {(isHost || isCoHost) && (
-                    <div className="p-4 bg-gray-50 border-t border-gray-200">
-                        <div className="space-y-3">
-                            <div className="grid grid-cols-2 gap-3">
-                                <button className="flex items-center justify-center space-x-2 bg-red-100 hover:bg-red-200 text-red-700 py-2.5 px-4 rounded-lg font-medium transition-all duration-200">
-                                    <VolumeX size={16} />
-                                    <span className="text-sm">Mute All</span>
-                                </button>
-                                <button className="flex items-center justify-center space-x-2 bg-orange-100 hover:bg-orange-200 text-orange-700 py-2.5 px-4 rounded-lg font-medium transition-all duration-200">
-                                    <VideoOff size={16} />
-                                    <span className="text-sm">Stop Videos</span>
-                                </button>
-                            </div>
-                            
-                            <button className="w-full flex items-center justify-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white py-2.5 px-4 rounded-lg font-medium transition-all duration-200">
-                                <Settings size={16} />
-                                <span>Meeting Settings</span>
-                            </button>
+                {/* Footer */}
+                <div className="p-4 border-t border-gray-100 bg-gray-50">
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <p className="text-sm font-medium text-gray-900">Total Participants</p>
+                            <p className="text-xs text-gray-500">{participants.length} members</p>
                         </div>
+                        <button className="flex items-center space-x-2 text-gray-500 hover:text-gray-700 text-sm font-medium px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+                            <Settings size={14} />
+                            <span>Settings</span>
+                        </button>
                     </div>
-                )}
+                </div>
             </motion.div>
         </>
     );

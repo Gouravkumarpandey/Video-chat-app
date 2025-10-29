@@ -11,7 +11,7 @@ import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Homepage from "./pages/Home";
-import RoomPage from "./pages/Room";
+// import RoomPage from "./pages/Room";  // Temporarily commented out due to merge conflicts
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -100,6 +100,7 @@ function AppRoutes() {
           </ProtectedRoute>
         } 
       />
+      {/* Temporarily commented out room route due to merge conflicts
       <Route 
         path="/room/:roomId" 
         element={
@@ -112,6 +113,7 @@ function AppRoutes() {
           </ProtectedRoute>
         } 
       />
+      */}
       
       {/* Catch all route */}
       <Route path="*" element={<Navigate to="/" replace />} />
