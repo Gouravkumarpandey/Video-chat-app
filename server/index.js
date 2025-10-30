@@ -243,12 +243,25 @@ app.get('/api/auth/me', authenticateToken, async (req, res) => {
   res.json(user);
 });
 
-// --- Socket.IO Logic (simplified demo) ---
+// --- Socket.IO Logic (group video fix) ---
+const rooms = {};
+
 io.on('connection', (socket) => {
   console.log('🔌 New client:', socket.id);
 
   socket.on('join-room', ({ roomId, name }) => {
     socket.join(roomId);
+    socket.name = name;
+    if (!rooms[roomId]) rooms[roomId] = {};
+    rooms[roomId][socket.id] = name;
+
+    // Send existing participants to the joining user
+    const existingParticipants = Object.entries(rooms[roomId])
+      .filter(([id]) => id !== socket.id)
+      .map(([id, pname]) => ({ socketId: id, name: pname }));
+    socket.emit('existing-participants', existingParticipants);
+
+    // Notify others in the room
     socket.to(roomId).emit('user-joined', { name, socketId: socket.id });
   });
 
@@ -256,7 +269,43 @@ io.on('connection', (socket) => {
     socket.to(roomId).emit('chat-message', { from, message });
   });
 
+  // WebRTC signaling events
+  socket.on('call-user', ({ socketId, offer }) => {
+    // Relay offer to the target user
+    io.to(socketId).emit('incomming-call', {
+      from: socket.id,
+      offer,
+      fromName: socket.name || 'Anonymous',
+    });
+  });
+
+  socket.on('call-accepted', ({ socketId, ans }) => {
+    // Relay answer to the caller
+    io.to(socketId).emit('call-accepted', {
+      ans,
+      socketId: socket.id,
+    });
+  });
+
+  socket.on('leave-room', ({ roomId }) => {
+    socket.leave(roomId);
+    if (rooms[roomId]) {
+      delete rooms[roomId][socket.id];
+      socket.to(roomId).emit('user-left', { socketId: socket.id, name: socket.name });
+      // Clean up empty room
+      if (Object.keys(rooms[roomId]).length === 0) delete rooms[roomId];
+    }
+  });
+
   socket.on('disconnect', () => {
+    // Remove from all rooms
+    for (const roomId of Object.keys(rooms)) {
+      if (rooms[roomId][socket.id]) {
+        socket.to(roomId).emit('user-left', { socketId: socket.id, name: socket.name });
+        delete rooms[roomId][socket.id];
+        if (Object.keys(rooms[roomId]).length === 0) delete rooms[roomId];
+      }
+    }
     console.log('❌ Disconnected:', socket.id);
   });
 });
