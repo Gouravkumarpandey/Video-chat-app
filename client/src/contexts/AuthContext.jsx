@@ -10,7 +10,7 @@ export const useAuth = () => {
     return context;
 };
 
-const API_BASE_URL = 'http://localhost:8000/api';
+const API_BASE_URL = 'http://localhost:8000';
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -61,16 +61,32 @@ export const AuthProvider = ({ children }) => {
         setIsLoading(true);
         try {
             console.log('Attempting login with:', email);
-            const response = await fetch(`${API_BASE_URL}/auth/login`, {
+            // Create payload with proper format
+            const payload = { email, password };
+            console.log('Login request payload:', { ...payload, password: '***' });
+            
+            const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify(payload)
             });
 
-            const data = await response.json();
-            console.log('Login response:', data);
+            console.log('Login response status:', response.status);
+            
+            // Handle non-JSON responses
+            let data;
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                data = await response.json();
+            } else {
+                const text = await response.text();
+                console.log('Non-JSON response:', text);
+                data = { error: 'Server returned non-JSON response' };
+            }
+            
+            console.log('Login response data:', data);
 
             if (response.ok) {
                 // Store token and user data
@@ -94,22 +110,49 @@ export const AuthProvider = ({ children }) => {
     const signup = async (userData) => {
         setIsLoading(true);
         try {
+            // Extract firstName and lastName from name if provided as a combined field
+            let firstName, lastName;
+            if (userData.name && !userData.firstName) {
+                const nameParts = userData.name.split(' ');
+                firstName = nameParts[0];
+                lastName = nameParts.slice(1).join(' ');
+            } else {
+                firstName = userData.firstName;
+                lastName = userData.lastName;
+            }
+            
             // Ensure firstName and lastName are sent as separate fields
             const payload = {
-                firstName: userData.firstName,
-                lastName: userData.lastName,
+                firstName: firstName,
+                lastName: lastName,
                 email: userData.email,
                 password: userData.password
             };
-            const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+            console.log('Signup payload:', { ...payload, password: '***' });
+            const response = await fetch(`${API_BASE_URL}/api/auth/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 },
                 body: JSON.stringify(payload),
+                credentials: 'include'
             });
-
-            const data = await response.json();
+            
+            console.log('Signup response status:', response.status);
+            
+            // Handle non-JSON responses
+            let data;
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                data = await response.json();
+            } else {
+                const text = await response.text();
+                console.log('Non-JSON response:', text);
+                data = { error: 'Server returned non-JSON response' };
+            }
+            
+            console.log('Signup response data:', data);
 
             if (response.ok) {
                 // Store token and user data

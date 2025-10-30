@@ -173,6 +173,16 @@ const Landing = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
                         >
+                            <div className="flex justify-center mb-8">
+                                <video
+                                    src="https://a.slack-edge.com/1023c55/marketing/img/homepage/revamped-24/headline/hp-headline.en-GB@2x.mp4"
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    className="w-[500px] max-w-full h-auto object-contain"
+                                />
+                            </div>
                             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
                                 Video Meetings
                                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
@@ -213,10 +223,14 @@ const Landing = () => {
                             <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-2 shadow-2xl">
                                 <div className="bg-gray-900 rounded-xl overflow-hidden">
                                     <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                                        <div className="text-center text-white">
-                                            <Video size={64} className="mx-auto mb-4 opacity-50" />
-                                            <p className="text-lg">Video Preview Coming Soon</p>
-                                        </div>
+                                        <video
+                                            src="https://a.slack-edge.com/0cedc3b/marketing/img/homepage/true-prospects/hero-revamp/animation/hero@2x.IN.webm"
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                            className="w-full h-full object-cover rounded-xl"
+                                        />
                                     </div>
                                 </div>
                             </div>
